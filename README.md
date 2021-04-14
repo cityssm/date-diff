@@ -1,6 +1,6 @@
 # DateDiff
 
-[![Codacy grade](https://img.shields.io/codacy/grade/57708a0662df41a8b494dbc009e620b1)](https://app.codacy.com/gh/cityssm/date-diff/dashboard) ![AppVeyor](https://img.shields.io/appveyor/build/dangowans/date-diff)
+![npm (scoped)](https://img.shields.io/npm/v/@cityssm/date-diff) [![Codacy grade](https://img.shields.io/codacy/grade/57708a0662df41a8b494dbc009e620b1)](https://app.codacy.com/gh/cityssm/date-diff/dashboard) [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/date-diff)](https://codeclimate.com/github/cityssm/date-diff) ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/cityssm/date-diff) [![AppVeyor](https://img.shields.io/appveyor/build/dangowans/date-diff)](https://ci.appveyor.com/project/dangowans/date-diff) [![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/date-diff)](https://app.snyk.io/org/cityssm/project/512fb2a1-4f6c-4c03-a741-bb51e7e9603a)
 
 DateDiff is a minimalized JavaScript date arithmetic extension.
 
@@ -17,12 +17,12 @@ npm install @cityssm/date-diff
 ## Usage
 
 ```javascript
-import { DateDiff } from "@cityssm/date-diff";
+import { dateDiff } from "@cityssm/date-diff";
 
 const fromDate = new Date(2014, 0, 1);  // 2014-01-01
 const toDate   = new Date(2015, 11, 1); // 2015-12-01
 
-const diff = DateDiff(fromDate, toDate);
+const diff = dateDiff(fromDate, toDate);
 
 diff.years();   // ===> 1.9
 diff.months();  // ===> 23
