@@ -47,46 +47,47 @@ const dateDiff = (fromDate, toDate = new Date()) => {
         ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
         return roundToPrecision(ret);
     })();
-    const formatted = (() => {
-        if (inYears >= 1) {
-            return inYears.toString() +
-                " year" +
-                (inYears === 1 ? "" : "s");
-        }
-        else if (inMonths >= 1) {
-            return inMonths.toString() +
-                " month" +
-                (inMonths === 1 ? "" : "s");
-        }
-        else if (inWeeks >= 1) {
-            return inWeeks.toString() +
-                " week" +
-                (inWeeks === 1 ? "" : "s");
-        }
-        else if (inDays >= 1) {
-            return inDays.toString() +
-                " day" +
-                (inDays === 1 ? "" : "s");
-        }
-        else if (inHours >= 1) {
-            return inHours.toString() +
-                " hour" +
-                (inHours === 1 ? "" : "s");
-        }
-        else if (inMinutes >= 1) {
-            return inMinutes.toString() +
-                " minute" +
-                (inMinutes === 1 ? "" : "s");
-        }
-        else if (inSeconds >= 1) {
-            return inSeconds.toString() +
-                " second" +
-                (inSeconds === 1 ? "" : "s");
-        }
-        return inMilliseconds.toString() +
+    let formatted = "";
+    if (inYears >= 1) {
+        formatted = inYears.toString() +
+            " year" +
+            (inYears === 1 ? "" : "s");
+    }
+    else if (inMonths >= 1) {
+        formatted = inMonths.toString() +
+            " month" +
+            (inMonths === 1 ? "" : "s");
+    }
+    else if (inWeeks >= 1) {
+        formatted = inWeeks.toString() +
+            " week" +
+            (inWeeks === 1 ? "" : "s");
+    }
+    else if (inDays >= 1) {
+        formatted = inDays.toString() +
+            " day" +
+            (inDays === 1 ? "" : "s");
+    }
+    else if (inHours >= 1) {
+        formatted = inHours.toString() +
+            " hour" +
+            (inHours === 1 ? "" : "s");
+    }
+    else if (inMinutes >= 1) {
+        formatted = inMinutes.toString() +
+            " minute" +
+            (inMinutes === 1 ? "" : "s");
+    }
+    else if (inSeconds >= 1) {
+        formatted = inSeconds.toString() +
+            " second" +
+            (inSeconds === 1 ? "" : "s");
+    }
+    else {
+        formatted = inMilliseconds.toString() +
             " millisecond" +
             (inMilliseconds === 1 ? "" : "s");
-    })();
+    }
     return {
         inMilliseconds,
         inSeconds,
