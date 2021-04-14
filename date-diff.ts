@@ -1,4 +1,4 @@
-export const DateDiff = (fromDate: Date, toDate: Date) => {
+export const dateDiff = (fromDate: Date, toDate: Date) => {
 
   const divisors = {
     days: 24 * 60 * 60 * 1000,
@@ -77,5 +77,5 @@ export const DateDiff = (fromDate: Date, toDate: Date) => {
     weeks: weekDiff,
     months: monthDiff,
     years: yearDiff
-  }
+  };
 };

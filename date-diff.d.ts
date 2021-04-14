@@ -1,4 +1,4 @@
-export declare const DateDiff: (fromDate: Date, toDate: Date) => {
+export declare const dateDiff: (fromDate: Date, toDate: Date) => {
     seconds: () => number;
     minutes: () => number;
     hours: () => number;

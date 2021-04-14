@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DateDiff = void 0;
-const DateDiff = (fromDate, toDate) => {
+exports.dateDiff = void 0;
+const dateDiff = (fromDate, toDate) => {
     const divisors = {
         days: 24 * 60 * 60 * 1000,
         hours: 60 * 60 * 1000,
@@ -66,4 +66,4 @@ const DateDiff = (fromDate, toDate) => {
         years: yearDiff
     };
 };
-exports.DateDiff = DateDiff;
+exports.dateDiff = dateDiff;
