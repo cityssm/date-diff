@@ -2,13 +2,11 @@
 
 ![npm (scoped)](https://img.shields.io/npm/v/@cityssm/date-diff) [![Codacy grade](https://img.shields.io/codacy/grade/57708a0662df41a8b494dbc009e620b1)](https://app.codacy.com/gh/cityssm/date-diff/dashboard) [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/date-diff)](https://codeclimate.com/github/cityssm/date-diff) ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/cityssm/date-diff) [![AppVeyor](https://img.shields.io/appveyor/build/dangowans/date-diff)](https://ci.appveyor.com/project/dangowans/date-diff) [![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/date-diff)](https://app.snyk.io/org/cityssm/project/512fb2a1-4f6c-4c03-a741-bb51e7e9603a)
 
-DateDiff is a minimalized JavaScript date arithmetic extension.
+Calculates the difference between two JavaScript Dates.
 
 Forked from [melvinsembrano/date-diff](https://github.com/melvinsembrano/date-diff).
 
 ## Installation
-
-**Coming soon!**
 
 ```sh
 npm install @cityssm/date-diff
@@ -43,14 +41,11 @@ diff = {
 
 The [original project]((https://github.com/melvinsembrano/date-diff)) made a few design decisions that could not be overcome with a simple pull request.
 
--   :star: The original project used CoffeeScript.  It lacked TypeScript typing.  **This version has TypeScript types.**
-
--   :star: The original project modified the `Date` prototype.  **This version does not.**
-
--   :star: The original project accepted its `fromDate` and `toDate` in what felt like the wrong order.
+-   :star: The original project uses CoffeeScript.  It lacks TypeScript typing.  **This version has TypeScript types.**
+-   :star: The original project modifies the `Date` prototype.  **This version does not.**
+-   :star: The original project accepts its `fromDate` and `toDate` in what felt like the wrong order.
 
 ### Some Other Differences
 
 -   This version returns an Object with all of the differences.
-
 -   This version includes a formatted string output for easy use in web applications.

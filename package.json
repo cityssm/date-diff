@@ -1,7 +1,7 @@
 {
   "name": "@cityssm/date-diff",
   "main": "date-diff.js",
-  "description": "DateDiff is a minimalized Javascript date arithmetic extension.",
+  "description": "Calculates the difference between two JavaScript Dates.",
   "version": "1.0.0",
   "keywords": [
     "DateDiff",
