@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dateDiff = void 0;
-const dateDiff = (fromDate, toDate) => {
+const dateDiff = (fromDate, toDate = new Date()) => {
+    const decimalPrecision = 1;
     const divisors = {
         days: 24 * 60 * 60 * 1000,
         hours: 60 * 60 * 1000,
@@ -23,47 +24,79 @@ const dateDiff = (fromDate, toDate) => {
     const daysInYear = (date) => {
         return (endOfYear(date).getTime() - beginOfYear(date).getTime()) / divisors.days;
     };
-    const oneDecimalRound = (n) => {
-        return parseFloat(n.toFixed(1));
+    const roundToPrecision = (n) => {
+        return parseFloat(n.toFixed(decimalPrecision));
     };
-    const millisecondDiff = Math.floor(toDate.getTime() - fromDate.getTime());
-    const secondDiff = () => {
-        return oneDecimalRound(millisecondDiff / divisors.seconds);
-    };
-    const minuteDiff = () => {
-        return oneDecimalRound(millisecondDiff / divisors.minutes);
-    };
-    const hourDiff = () => {
-        return oneDecimalRound(millisecondDiff / divisors.hours);
-    };
-    const dayDiff = () => {
-        return oneDecimalRound(millisecondDiff / divisors.days);
-    };
-    const weekDiff = () => {
-        return oneDecimalRound(dayDiff() / 7);
-    };
-    const monthDiff = () => {
+    const inMilliseconds = Math.floor(toDate.getTime() - fromDate.getTime());
+    const inSeconds = roundToPrecision(inMilliseconds / divisors.seconds);
+    const inMinutes = roundToPrecision(inMilliseconds / divisors.minutes);
+    const inHours = roundToPrecision(inMilliseconds / divisors.hours);
+    const inDays = roundToPrecision(inMilliseconds / divisors.days);
+    const inWeeks = roundToPrecision(inDays / 7);
+    const inMonths = (() => {
         let ret;
         ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
         ret += toDate.getMonth() - fromDate.getMonth();
         const eom = endOfMonth(fromDate).getDate();
         ret += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
-        return oneDecimalRound(ret);
-    };
-    const yearDiff = () => {
+        return roundToPrecision(ret);
+    })();
+    const inYears = (() => {
         let ret;
         ret = toDate.getFullYear() - fromDate.getFullYear();
         ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
-        return oneDecimalRound(ret);
-    };
+        return roundToPrecision(ret);
+    })();
+    const formatted = (() => {
+        if (inYears >= 1) {
+            return inYears.toString() +
+                " year" +
+                (inYears === 1 ? "" : "s");
+        }
+        else if (inMonths >= 1) {
+            return inMonths.toString() +
+                " month" +
+                (inMonths === 1 ? "" : "s");
+        }
+        else if (inWeeks >= 1) {
+            return inWeeks.toString() +
+                " week" +
+                (inWeeks === 1 ? "" : "s");
+        }
+        else if (inDays >= 1) {
+            return inDays.toString() +
+                " day" +
+                (inDays === 1 ? "" : "s");
+        }
+        else if (inHours >= 1) {
+            return inHours.toString() +
+                " hour" +
+                (inHours === 1 ? "" : "s");
+        }
+        else if (inMinutes >= 1) {
+            return inMinutes.toString() +
+                " minute" +
+                (inMinutes === 1 ? "" : "s");
+        }
+        else if (inSeconds >= 1) {
+            return inSeconds.toString() +
+                " second" +
+                (inSeconds === 1 ? "" : "s");
+        }
+        return inMilliseconds.toString() +
+            " millisecond" +
+            (inMilliseconds === 1 ? "" : "s");
+    })();
     return {
-        seconds: secondDiff,
-        minutes: minuteDiff,
-        hours: hourDiff,
-        days: dayDiff,
-        weeks: weekDiff,
-        months: monthDiff,
-        years: yearDiff
+        inMilliseconds,
+        inSeconds,
+        inMinutes,
+        inHours,
+        inDays,
+        inWeeks,
+        inMonths,
+        inYears,
+        formatted
     };
 };
 exports.dateDiff = dateDiff;

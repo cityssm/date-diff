@@ -19,22 +19,38 @@ npm install @cityssm/date-diff
 ```javascript
 import { dateDiff } from "@cityssm/date-diff";
 
-const fromDate = new Date(2014, 0, 1);  // 2014-01-01
-const toDate   = new Date(2015, 11, 1); // 2015-12-01
+const fromDate = new Date(2020, (1 - 1), 1); // 2020-01-01
+const toDate   = new Date(2021, (1 - 1), 1); // 2021-01-01
 
 const diff = dateDiff(fromDate, toDate);
 
-diff.years();   // ===> 1.9
-diff.months();  // ===> 23
-diff.days();    // ===> 699
-diff.weeks();   // ===> 99.9
-diff.hours();   // ===> 16776
-diff.minutes(); // ===> 1006560
-diff.seconds(); // ===> 60393600
+/*
+diff = {
+  inMilliseconds: 31622400000,
+  inSeconds: 31622400,
+  inMinutes: 527040,
+  inHours: 8784,
+  inDays: 366,
+  inWeeks: 52.3,
+  inMonths: 12,
+  inYears: 1,
+  formatted: '1 year'
+}
+*/
 ```
 
-## Why the Fork?
+## Why Fork the Original Project
 
--   The original code was written in CoffeeScript.  This version uses TypeScript instead.
--   The original code takes the past date or `fromDate` as the second argument.  This version takes the `fromDate` as the first argument.
--   The original code alters the `Date` prototype.  This version does not.
+The [original project]((https://github.com/melvinsembrano/date-diff)) made a few design decisions that could not be overcome with a simple pull request.
+
+-   :star: The original project used CoffeeScript.  It lacked TypeScript typing.  **This version has TypeScript types.**
+
+-   :star: The original project modified the `Date` prototype.  **This version does not.**
+
+-   :star: The original project accepted its `fromDate` and `toDate` in what felt like the wrong order.
+
+### Some Other Differences
+
+-   This version returns an Object with all of the differences.
+
+-   This version includes a formatted string output for easy use in web applications.

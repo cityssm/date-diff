@@ -1,4 +1,10 @@
-export const dateDiff = (fromDate: Date, toDate: Date) => {
+export const dateDiff = (fromDate: Date, toDate: Date = new Date()) => {
+
+  /*
+   * Constants
+   */
+
+  const decimalPrecision = 1;
 
   const divisors = {
     days: 24 * 60 * 60 * 1000,
@@ -6,6 +12,10 @@ export const dateDiff = (fromDate: Date, toDate: Date) => {
     minutes: 60 * 1000,
     seconds: 1000
   };
+
+  /*
+   * Helpers
+   */
 
   const endOfMonth = (date: Date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -27,55 +37,102 @@ export const dateDiff = (fromDate: Date, toDate: Date) => {
     return (endOfYear(date).getTime() - beginOfYear(date).getTime()) / divisors.days;
   };
 
-  const oneDecimalRound = (n: number) => {
-    return parseFloat(n.toFixed(1));
+  const roundToPrecision = (n: number) => {
+    return parseFloat(n.toFixed(decimalPrecision));
   };
 
-  const millisecondDiff = Math.floor(toDate.getTime() - fromDate.getTime());
+  /*
+   * Differences
+   */
 
-  const secondDiff = () => {
-    return oneDecimalRound(millisecondDiff / divisors.seconds);
-  };
+  const inMilliseconds = Math.floor(toDate.getTime() - fromDate.getTime());
 
-  const minuteDiff = () => {
-    return oneDecimalRound(millisecondDiff / divisors.minutes);
-  };
+  const inSeconds = roundToPrecision(inMilliseconds / divisors.seconds);
 
-  const hourDiff = () => {
-    return oneDecimalRound(millisecondDiff / divisors.hours);
-  };
+  const inMinutes = roundToPrecision(inMilliseconds / divisors.minutes);
 
-  const dayDiff = () => {
-    return oneDecimalRound(millisecondDiff / divisors.days);
-  };
+  const inHours = roundToPrecision(inMilliseconds / divisors.hours);
 
-  const weekDiff = () => {
-    return oneDecimalRound(dayDiff() / 7);
-  };
+  const inDays = roundToPrecision(inMilliseconds / divisors.days);
 
-  const monthDiff = () => {
+  const inWeeks = roundToPrecision(inDays / 7);
+
+  const inMonths = (() => {
     let ret: number;
     ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
     ret += toDate.getMonth() - fromDate.getMonth();
     const eom = endOfMonth(fromDate).getDate();
     ret += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
-    return oneDecimalRound(ret);
-  };
+    return roundToPrecision(ret);
+  })();
 
-  const yearDiff = () => {
+  const inYears = (() => {
     let ret: number;
     ret = toDate.getFullYear() - fromDate.getFullYear();
     ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
-    return oneDecimalRound(ret);
-  };
+    return roundToPrecision(ret);
+  })();
+
+  /*
+   * Formatted
+   */
+
+  const formatted = ((): string => {
+
+    if (inYears >= 1) {
+      return inYears.toString() +
+        " year" +
+        (inYears === 1 ? "" : "s");
+
+    } else if (inMonths >= 1) {
+      return inMonths.toString() +
+        " month" +
+        (inMonths === 1 ? "" : "s");
+
+    } else if (inWeeks >= 1) {
+      return inWeeks.toString() +
+        " week" +
+        (inWeeks === 1 ? "" : "s");
+
+    } else if (inDays >= 1) {
+      return inDays.toString() +
+        " day" +
+        (inDays === 1 ? "" : "s");
+
+    } else if (inHours >= 1) {
+      return inHours.toString() +
+        " hour" +
+        (inHours === 1 ? "" : "s");
+
+    } else if (inMinutes >= 1) {
+      return inMinutes.toString() +
+        " minute" +
+        (inMinutes === 1 ? "" : "s");
+
+    } else if (inSeconds >= 1) {
+      return inSeconds.toString() +
+        " second" +
+        (inSeconds === 1 ? "" : "s");
+    }
+
+    return inMilliseconds.toString() +
+      " millisecond" +
+      (inMilliseconds === 1 ? "" : "s");
+  })();
+
+  /*
+   * Return
+   */
 
   return {
-    seconds: secondDiff,
-    minutes: minuteDiff,
-    hours: hourDiff,
-    days: dayDiff,
-    weeks: weekDiff,
-    months: monthDiff,
-    years: yearDiff
+    inMilliseconds,
+    inSeconds,
+    inMinutes,
+    inHours,
+    inDays,
+    inWeeks,
+    inMonths,
+    inYears,
+    formatted
   };
 };
