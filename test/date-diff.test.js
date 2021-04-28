@@ -1,11 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const assert = require("assert");
-const date_diff_1 = require("../date-diff");
+import * as assert from "assert";
+import dateDiff from "../date-diff.js";
 const today = new Date(2020, (1 - 1), 1);
 describe("dateDiff(today, tomorrow)", () => {
     const tomorrow = new Date(2020, (1 - 1), 2);
-    const diff = date_diff_1.dateDiff(today, tomorrow);
+    const diff = dateDiff(today, tomorrow);
     it("will return 1 day", () => {
         assert.strictEqual(diff.inDays, 1);
     });
@@ -24,14 +22,14 @@ describe("dateDiff(today, tomorrow)", () => {
 });
 describe("dateDiff(today, twoHoursLater)", () => {
     const twoHoursLater = new Date(today.getTime() + (2 * 60 * 60 * 1000));
-    const diff = date_diff_1.dateDiff(today, twoHoursLater);
+    const diff = dateDiff(today, twoHoursLater);
     it("will return \"2 hours\"", () => {
         assert.strictEqual(diff.formatted, "2 hours");
     });
 });
 describe("dateDiff(today, threeWeeksLater)", () => {
     const threeWeeksLater = new Date(today.getTime() + (3 * 7 * 24 * 60 * 60 * 1000));
-    const diff = date_diff_1.dateDiff(today, threeWeeksLater);
+    const diff = dateDiff(today, threeWeeksLater);
     it("will return \"3 weeks\"", () => {
         assert.strictEqual(diff.formatted, "3 weeks");
     });
@@ -39,35 +37,35 @@ describe("dateDiff(today, threeWeeksLater)", () => {
 describe("dateDiff(today, fourMonthsLater)", () => {
     const fourMonthsLater = new Date(today.getTime());
     fourMonthsLater.setMonth(fourMonthsLater.getMonth() + 4);
-    const diff = date_diff_1.dateDiff(today, fourMonthsLater);
+    const diff = dateDiff(today, fourMonthsLater);
     it("will return \"4 months\"", () => {
         assert.strictEqual(diff.formatted, "4 months");
     });
 });
 describe("dateDiff(today, twelveMinutesLater)", () => {
     const twelveMinutesLater = new Date(today.getTime() + (12 * 60 * 1000));
-    const diff = date_diff_1.dateDiff(today, twelveMinutesLater);
+    const diff = dateDiff(today, twelveMinutesLater);
     it("will return \"12 minutes\"", () => {
         assert.strictEqual(diff.formatted, "12 minutes");
     });
 });
 describe("dateDiff(today, fiftySecondsLater)", () => {
     const fiftySecondsLater = new Date(today.getTime() + (50 * 1000));
-    const diff = date_diff_1.dateDiff(today, fiftySecondsLater);
+    const diff = dateDiff(today, fiftySecondsLater);
     it("will return \"50 seconds\"", () => {
         assert.strictEqual(diff.formatted, "50 seconds");
     });
 });
 describe("dateDiff(today, hundredMillisecondsLater)", () => {
     const hundredMillisecondsLater = new Date(today.getTime() + 100);
-    const diff = date_diff_1.dateDiff(today, hundredMillisecondsLater);
+    const diff = dateDiff(today, hundredMillisecondsLater);
     it("will return \"100 milliseconds\"", () => {
         assert.strictEqual(diff.formatted, "100 milliseconds");
     });
 });
 describe("dateDiff(today, nextYear)", () => {
     const nextYear = new Date(2021, (1 - 1), 1);
-    const diff = date_diff_1.dateDiff(today, nextYear);
+    const diff = dateDiff(today, nextYear);
     it("will return 366 days", () => {
         assert.strictEqual(diff.inDays, 366);
     });

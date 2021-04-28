@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { dateDiff } from "../date-diff";
+import dateDiff from "../date-diff.js";
 
 
 // January 1st, 2020

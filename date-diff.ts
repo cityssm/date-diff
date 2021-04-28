@@ -1,4 +1,7 @@
-export const dateDiff = (fromDate: Date, toDate: Date = new Date()) => {
+import type { DateDiff } from "./types";
+
+
+export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date()) => {
 
   /*
    * Constants
@@ -79,37 +82,37 @@ export const dateDiff = (fromDate: Date, toDate: Date = new Date()) => {
 
   let formatted = "";
 
-  if (inYears >= 1) {
+  if (Math.abs(inYears) >= 1) {
     formatted = inYears.toString() +
       " year" +
       (inYears === 1 ? "" : "s");
 
-  } else if (inMonths >= 1) {
+  } else if (Math.abs(inMonths) >= 1) {
     formatted = inMonths.toString() +
       " month" +
       (inMonths === 1 ? "" : "s");
 
-  } else if (inWeeks >= 1) {
+  } else if (Math.abs(inWeeks) >= 1) {
     formatted = inWeeks.toString() +
       " week" +
       (inWeeks === 1 ? "" : "s");
 
-  } else if (inDays >= 1) {
+  } else if (Math.abs(inDays) >= 1) {
     formatted = inDays.toString() +
       " day" +
       (inDays === 1 ? "" : "s");
 
-  } else if (inHours >= 1) {
+  } else if (Math.abs(inHours) >= 1) {
     formatted = inHours.toString() +
       " hour" +
       (inHours === 1 ? "" : "s");
 
-  } else if (inMinutes >= 1) {
+  } else if (Math.abs(inMinutes) >= 1) {
     formatted = inMinutes.toString() +
       " minute" +
       (inMinutes === 1 ? "" : "s");
 
-  } else if (inSeconds >= 1) {
+  } else if (Math.abs(inSeconds) >= 1) {
     formatted = inSeconds.toString() +
       " second" +
       (inSeconds === 1 ? "" : "s");
@@ -136,3 +139,6 @@ export const dateDiff = (fromDate: Date, toDate: Date = new Date()) => {
     formatted
   };
 };
+
+
+export default dateDiff;

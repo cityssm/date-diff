@@ -14,6 +14,20 @@ npm install @cityssm/date-diff
 
 ## Usage
 
+### Browser (ES2015)
+
+```html
+<script src="/path/to/date-diff/es6/date-diff.min.js"></script>
+<script>
+  const fromDate = new Date(2020, (1 - 1), 1); // 2020-01-01
+  const toDate   = new Date(2021, (1 - 1), 1); // 2021-01-01
+
+  const diff = exports.dateDiff(fromDate, toDate);
+</script>
+```
+
+### Node 12 or better (ES Module)
+
 ```javascript
 import { dateDiff } from "@cityssm/date-diff";
 
@@ -21,8 +35,11 @@ const fromDate = new Date(2020, (1 - 1), 1); // 2020-01-01
 const toDate   = new Date(2021, (1 - 1), 1); // 2021-01-01
 
 const diff = dateDiff(fromDate, toDate);
+```
 
-/*
+### Output
+
+``` javascript
 diff = {
   inMilliseconds: 31622400000,
   inSeconds: 31622400,
@@ -34,5 +51,4 @@ diff = {
   inYears: 1,
   formatted: '1 year'
 }
-*/
 ```
