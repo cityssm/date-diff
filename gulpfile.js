@@ -4,7 +4,7 @@ import minify from "gulp-minify";
 const compileFn = () => {
     return gulp.src("date-diff.js", { allowEmpty: true })
         .pipe(babel({
-        presets: ['@babel/env']
+        presets: ["@babel/env"]
     }))
         .pipe(gulp.dest("./es2015"))
         .pipe(minify({ noSource: true, ext: { min: ".min.js" } }))
