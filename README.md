@@ -17,7 +17,7 @@ npm install @cityssm/date-diff
 ### Browser (ES2015)
 
 ```html
-<script src="/path/to/date-diff/es6/date-diff.min.js"></script>
+<script src="/path/to/date-diff/es2015/date-diff.min.js"></script>
 <script>
   const fromDate = new Date(2020, (1 - 1), 1); // 2020-01-01
   const toDate   = new Date(2021, (1 - 1), 1); // 2021-01-01

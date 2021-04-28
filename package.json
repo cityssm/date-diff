@@ -2,7 +2,7 @@
   "name": "@cityssm/date-diff",
   "exports": "./date-diff.js",
   "description": "Calculates the difference between two JavaScript Dates.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "engines": {
     "node": ">=12"
