@@ -7,7 +7,8 @@ exports["default"] = exports.dateDiff = void 0;
 
 var dateDiff = function dateDiff(fromDate) {
   var toDate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Date();
-  var decimalPrecision = 1;
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var decimalPrecision = (options === null || options === void 0 ? void 0 : options.decimalPrecision) || 1;
   var divisors = {
     days: 24 * 60 * 60 * 1000,
     hours: 60 * 60 * 1000,

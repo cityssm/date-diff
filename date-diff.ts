@@ -1,13 +1,13 @@
-import type { DateDiff } from "./types";
+import type { DateDiff, DateDiffOptions } from "./types";
 
 
-export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date()) => {
+export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), options: DateDiffOptions = {}) => {
 
   /*
    * Constants
    */
 
-  const decimalPrecision = 1;
+  const decimalPrecision = options?.decimalPrecision || 1;
 
   const divisors = {
     days: 24 * 60 * 60 * 1000,

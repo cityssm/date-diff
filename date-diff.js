@@ -1,5 +1,5 @@
-export const dateDiff = (fromDate, toDate = new Date()) => {
-    const decimalPrecision = 1;
+export const dateDiff = (fromDate, toDate = new Date(), options = {}) => {
+    const decimalPrecision = (options === null || options === void 0 ? void 0 : options.decimalPrecision) || 1;
     const divisors = {
         days: 24 * 60 * 60 * 1000,
         hours: 60 * 60 * 1000,

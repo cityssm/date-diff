@@ -20,11 +20,17 @@ describe("dateDiff(today, tomorrow)", () => {
         assert.strictEqual(diff.formatted, "1 day");
     });
 });
-describe("dateDiff(today, twoHoursLater)", () => {
+describe("dateDiff(today, twoHoursLater, { decimalPrecision: 2 })", () => {
     const twoHoursLater = new Date(today.getTime() + (2 * 60 * 60 * 1000));
-    const diff = dateDiff(today, twoHoursLater);
+    const diff = dateDiff(today, twoHoursLater, {
+        decimalPrecision: 2
+    });
     it("will return \"2 hours\"", () => {
         assert.strictEqual(diff.formatted, "2 hours");
+    });
+    it("will return two decimal precision on inDays", () => {
+        const daysString = diff.inDays.toString();
+        assert.ok(daysString.length === 4 && daysString.indexOf(".") === 1);
     });
 });
 describe("dateDiff(today, threeWeeksLater)", () => {

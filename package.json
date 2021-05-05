@@ -2,7 +2,7 @@
   "name": "@cityssm/date-diff",
   "exports": "./date-diff.js",
   "description": "Calculates the difference between two JavaScript Dates.",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "type": "module",
   "engines": {
     "node": ">=12"
@@ -25,14 +25,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.13.16",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
     "@types/gulp": "^4.0.8",
     "@types/gulp-babel": "^6.1.29",
     "@types/gulp-minify": "^3.1.0",
     "@types/mocha": "^8.2.2",
-    "@types/node": "^15.0.1",
-    "c8": "^7.7.1",
+    "@types/node": "^15.0.2",
+    "c8": "^7.7.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-minify": "^3.1.0",
