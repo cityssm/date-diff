@@ -1,3 +1,7 @@
+export type DateDiffOptions = {
+  decimalPrecision?: number;
+};
+
 export type DateDiff = (fromDate: Date, toDate?: Date, options?: DateDiffOptions) => {
     inMilliseconds: number;
     inSeconds: number;
@@ -8,9 +12,4 @@ export type DateDiff = (fromDate: Date, toDate?: Date, options?: DateDiffOptions
     inMonths: number;
     inYears: number;
     formatted: string;
-};
-
-
-export type DateDiffOptions = {
-  decimalPrecision?: number;
 };
