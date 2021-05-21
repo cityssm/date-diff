@@ -1,86 +1,84 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.dateDiff = void 0;
+exports["default"] = exports.dateDiff = exports.defaultOptions = void 0;
+
+var utils = _interopRequireWildcard(require("./utils.js"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var defaultOptions = {
+  decimalPrecision: 1,
+  yearsSuffix: "year",
+  yearsSuffixPlural: "years",
+  monthsSuffix: "month",
+  monthsSuffixPlural: "months",
+  weeksSuffix: "week",
+  weeksSuffixPlural: "weeks",
+  daysSuffix: "day",
+  daysSuffixPlural: "days",
+  hoursSuffix: "hour",
+  hoursSuffixPlural: "hours",
+  minutesSuffix: "minute",
+  minutesSuffixPlural: "minutes",
+  secondsSuffix: "second",
+  secondsSuffixPlural: "seconds",
+  millisecondsSuffix: "millisecond",
+  millisecondsSuffixPlural: "milliseconds"
+};
+exports.defaultOptions = defaultOptions;
 
 var dateDiff = function dateDiff(fromDate) {
   var toDate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Date();
-  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var decimalPrecision = (options === null || options === void 0 ? void 0 : options.decimalPrecision) || 1;
-  var divisors = {
-    days: 24 * 60 * 60 * 1000,
-    hours: 60 * 60 * 1000,
-    minutes: 60 * 1000,
-    seconds: 1000
-  };
-
-  var endOfMonth = function endOfMonth(date) {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  };
-
-  var endOfYear = function endOfYear(date) {
-    return new Date(date.getFullYear() + 1, 0, 0);
-  };
-
-  var beginOfYear = function beginOfYear(date) {
-    return new Date(date.getFullYear(), 0, 0);
-  };
-
-  var dayOfYear = function dayOfYear(date) {
-    return (date.getTime() - beginOfYear(date).getTime()) / divisors.days;
-  };
-
-  var daysInYear = function daysInYear(date) {
-    return (endOfYear(date).getTime() - beginOfYear(date).getTime()) / divisors.days;
-  };
-
-  var roundToPrecision = function roundToPrecision(n) {
-    return parseFloat(n.toFixed(decimalPrecision));
-  };
-
+  var dateDiffOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var options = Object.assign({}, defaultOptions, dateDiffOptions);
   var inMilliseconds = Math.floor(toDate.getTime() - fromDate.getTime());
-  var inSeconds = roundToPrecision(inMilliseconds / divisors.seconds);
-  var inMinutes = roundToPrecision(inMilliseconds / divisors.minutes);
-  var inHours = roundToPrecision(inMilliseconds / divisors.hours);
-  var inDays = roundToPrecision(inMilliseconds / divisors.days);
-  var inWeeks = roundToPrecision(inDays / 7);
+  var inSeconds = utils.roundToPrecision(inMilliseconds / utils.divisors.seconds, options.decimalPrecision);
+  var inMinutes = utils.roundToPrecision(inMilliseconds / utils.divisors.minutes, options.decimalPrecision);
+  var inHours = utils.roundToPrecision(inMilliseconds / utils.divisors.hours, options.decimalPrecision);
+  var inDays = utils.roundToPrecision(inMilliseconds / utils.divisors.days, options.decimalPrecision);
+  var inWeeks = utils.roundToPrecision(inDays / 7, options.decimalPrecision);
 
   var inMonths = function () {
     var ret;
     ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
     ret += toDate.getMonth() - fromDate.getMonth();
-    var eom = endOfMonth(fromDate).getDate();
+    var eom = utils.endOfMonth(fromDate).getDate();
     ret += toDate.getDate() / eom - fromDate.getDate() / eom;
-    return roundToPrecision(ret);
+    return utils.roundToPrecision(ret, options.decimalPrecision);
   }();
 
   var inYears = function () {
     var ret;
     ret = toDate.getFullYear() - fromDate.getFullYear();
-    ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
-    return roundToPrecision(ret);
+    ret += (utils.dayOfYear(toDate) - utils.dayOfYear(fromDate)) / utils.daysInYear(fromDate);
+    return utils.roundToPrecision(ret, options.decimalPrecision);
   }();
 
   var formatted = "";
 
   if (Math.abs(inYears) >= 1) {
-    formatted = inYears.toString() + " year" + (inYears === 1 ? "" : "s");
+    formatted = inYears.toString() + " " + (inYears === 1 ? options.yearsSuffix : options.yearsSuffixPlural);
   } else if (Math.abs(inMonths) >= 1) {
-    formatted = inMonths.toString() + " month" + (inMonths === 1 ? "" : "s");
+    formatted = inMonths.toString() + " " + (inMonths === 1 ? options.monthsSuffix : options.monthsSuffixPlural);
   } else if (Math.abs(inWeeks) >= 1) {
-    formatted = inWeeks.toString() + " week" + (inWeeks === 1 ? "" : "s");
+    formatted = inWeeks.toString() + " " + (inWeeks === 1 ? options.weeksSuffix : options.weeksSuffixPlural);
   } else if (Math.abs(inDays) >= 1) {
-    formatted = inDays.toString() + " day" + (inDays === 1 ? "" : "s");
+    formatted = inDays.toString() + " " + (inDays === 1 ? options.daysSuffix : options.daysSuffixPlural);
   } else if (Math.abs(inHours) >= 1) {
-    formatted = inHours.toString() + " hour" + (inHours === 1 ? "" : "s");
+    formatted = inHours.toString() + " " + (inHours === 1 ? options.hoursSuffix : options.hoursSuffixPlural);
   } else if (Math.abs(inMinutes) >= 1) {
-    formatted = inMinutes.toString() + " minute" + (inMinutes === 1 ? "" : "s");
+    formatted = inMinutes.toString() + " " + (inMinutes === 1 ? options.minutesSuffix : options.minutesSuffixPlural);
   } else if (Math.abs(inSeconds) >= 1) {
-    formatted = inSeconds.toString() + " second" + (inSeconds === 1 ? "" : "s");
+    formatted = inSeconds.toString() + " " + (inSeconds === 1 ? options.secondsSuffix : options.secondsSuffixPlural);
   } else {
-    formatted = inMilliseconds.toString() + " millisecond" + (inMilliseconds === 1 ? "" : "s");
+    formatted = inMilliseconds.toString() + " " + (inMilliseconds === 1 ? options.millisecondsSuffix : options.millisecondsSuffixPlural);
   }
 
   return {

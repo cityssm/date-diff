@@ -2,10 +2,10 @@
   "name": "@cityssm/date-diff",
   "exports": "./date-diff.js",
   "description": "Calculates the difference between two JavaScript Dates.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "type": "module",
   "engines": {
-    "node": ">=12"
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "keywords": [
     "DateDiff",
@@ -25,22 +25,22 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.1",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
     "@types/gulp": "^4.0.8",
     "@types/gulp-babel": "^6.1.29",
     "@types/gulp-minify": "^3.1.0",
     "@types/mocha": "^8.2.2",
-    "@types/node": "^15.0.2",
+    "@types/node": "^15.6.0",
     "c8": "^7.7.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-minify": "^3.1.0",
-    "mocha": "^8.3.2",
+    "mocha": "^8.4.0",
     "typescript": "^4.2.4"
   },
   "scripts": {
     "test": "mocha",
-    "coverage": "c8 mocha"
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary mocha"
   }
 }

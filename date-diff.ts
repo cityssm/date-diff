@@ -1,48 +1,37 @@
+import * as utils from "./utils.js";
 import type { DateDiff, DateDiffOptions } from "./types";
 
+/*
+ * Options
+ */
 
-export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), options: DateDiffOptions = {}) => {
+export const defaultOptions: DateDiffOptions = {
+  decimalPrecision: 1,
+  yearsSuffix: "year",
+  yearsSuffixPlural: "years",
+  monthsSuffix: "month",
+  monthsSuffixPlural: "months",
+  weeksSuffix: "week",
+  weeksSuffixPlural: "weeks",
+  daysSuffix: "day",
+  daysSuffixPlural: "days",
+  hoursSuffix: "hour",
+  hoursSuffixPlural: "hours",
+  minutesSuffix: "minute",
+  minutesSuffixPlural: "minutes",
+  secondsSuffix: "second",
+  secondsSuffixPlural: "seconds",
+  millisecondsSuffix: "millisecond",
+  millisecondsSuffixPlural: "milliseconds"
+};
 
-  /*
-   * Constants
-   */
+/*
+ * dateDiff function
+ */
 
-  const decimalPrecision = options?.decimalPrecision || 1;
+export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), dateDiffOptions: DateDiffOptions = {}) => {
 
-  const divisors = {
-    days: 24 * 60 * 60 * 1000,
-    hours: 60 * 60 * 1000,
-    minutes: 60 * 1000,
-    seconds: 1000
-  };
-
-  /*
-   * Helpers
-   */
-
-  const endOfMonth = (date: Date) => {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  };
-
-  const endOfYear = (date: Date) => {
-    return new Date(date.getFullYear() + 1, 0, 0);
-  };
-
-  const beginOfYear = (date: Date) => {
-    return new Date(date.getFullYear(), 0, 0);
-  };
-
-  const dayOfYear = (date: Date) => {
-    return (date.getTime() - beginOfYear(date).getTime()) / divisors.days;
-  };
-
-  const daysInYear = (date: Date) => {
-    return (endOfYear(date).getTime() - beginOfYear(date).getTime()) / divisors.days;
-  };
-
-  const roundToPrecision = (n: number) => {
-    return parseFloat(n.toFixed(decimalPrecision));
-  };
+  const options: DateDiffOptions = Object.assign({}, defaultOptions, dateDiffOptions);
 
   /*
    * Differences
@@ -50,30 +39,30 @@ export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), op
 
   const inMilliseconds = Math.floor(toDate.getTime() - fromDate.getTime());
 
-  const inSeconds = roundToPrecision(inMilliseconds / divisors.seconds);
+  const inSeconds = utils.roundToPrecision(inMilliseconds / utils.divisors.seconds, options.decimalPrecision);
 
-  const inMinutes = roundToPrecision(inMilliseconds / divisors.minutes);
+  const inMinutes = utils.roundToPrecision(inMilliseconds / utils.divisors.minutes, options.decimalPrecision);
 
-  const inHours = roundToPrecision(inMilliseconds / divisors.hours);
+  const inHours = utils.roundToPrecision(inMilliseconds / utils.divisors.hours, options.decimalPrecision);
 
-  const inDays = roundToPrecision(inMilliseconds / divisors.days);
+  const inDays = utils.roundToPrecision(inMilliseconds / utils.divisors.days, options.decimalPrecision);
 
-  const inWeeks = roundToPrecision(inDays / 7);
+  const inWeeks = utils.roundToPrecision(inDays / 7, options.decimalPrecision);
 
   const inMonths = (() => {
     let ret: number;
     ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
     ret += toDate.getMonth() - fromDate.getMonth();
-    const eom = endOfMonth(fromDate).getDate();
+    const eom = utils.endOfMonth(fromDate).getDate();
     ret += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
-    return roundToPrecision(ret);
+    return utils.roundToPrecision(ret, options.decimalPrecision);
   })();
 
   const inYears = (() => {
     let ret: number;
     ret = toDate.getFullYear() - fromDate.getFullYear();
-    ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
-    return roundToPrecision(ret);
+    ret += (utils.dayOfYear(toDate) - utils.dayOfYear(fromDate)) / utils.daysInYear(fromDate);
+    return utils.roundToPrecision(ret, options.decimalPrecision);
   })();
 
   /*
@@ -84,43 +73,44 @@ export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), op
 
   if (Math.abs(inYears) >= 1) {
     formatted = inYears.toString() +
-      " year" +
-      (inYears === 1 ? "" : "s");
+      " " +
+      (inYears === 1 ? options.yearsSuffix : options.yearsSuffixPlural);
+
 
   } else if (Math.abs(inMonths) >= 1) {
     formatted = inMonths.toString() +
-      " month" +
-      (inMonths === 1 ? "" : "s");
+      " " +
+      (inMonths === 1 ? options.monthsSuffix : options.monthsSuffixPlural);
 
   } else if (Math.abs(inWeeks) >= 1) {
     formatted = inWeeks.toString() +
-      " week" +
-      (inWeeks === 1 ? "" : "s");
+      " " +
+      (inWeeks === 1 ? options.weeksSuffix : options.weeksSuffixPlural);
 
   } else if (Math.abs(inDays) >= 1) {
     formatted = inDays.toString() +
-      " day" +
-      (inDays === 1 ? "" : "s");
+      " " +
+      (inDays === 1 ? options.daysSuffix : options.daysSuffixPlural);
 
   } else if (Math.abs(inHours) >= 1) {
     formatted = inHours.toString() +
-      " hour" +
-      (inHours === 1 ? "" : "s");
+      " " +
+      (inHours === 1 ? options.hoursSuffix : options.hoursSuffixPlural);
 
   } else if (Math.abs(inMinutes) >= 1) {
     formatted = inMinutes.toString() +
-      " minute" +
-      (inMinutes === 1 ? "" : "s");
+      " " +
+      (inMinutes === 1 ? options.minutesSuffix : options.minutesSuffixPlural);
 
   } else if (Math.abs(inSeconds) >= 1) {
     formatted = inSeconds.toString() +
-      " second" +
-      (inSeconds === 1 ? "" : "s");
+      " " +
+      (inSeconds === 1 ? options.secondsSuffix : options.secondsSuffixPlural);
 
   } else {
     formatted = inMilliseconds.toString() +
-      " millisecond" +
-      (inMilliseconds === 1 ? "" : "s");
+      " " +
+      (inMilliseconds === 1 ? options.millisecondsSuffix : options.millisecondsSuffixPlural);
   }
 
   /*
@@ -139,6 +129,5 @@ export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), op
     formatted
   };
 };
-
 
 export default dateDiff;
