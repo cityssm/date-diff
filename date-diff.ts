@@ -1,8 +1,5 @@
 import type * as types from "./types";
 
-// import for gulp-aegean -> babel -> es2015
-import "./utils.js";
-
 import { divisors, endOfMonth, dayOfYear, daysInYear, roundToPrecision } from "./utils.js";
 
 /*

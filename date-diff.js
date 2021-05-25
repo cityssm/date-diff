@@ -1,4 +1,3 @@
-import "./utils.js";
 import { divisors, endOfMonth, dayOfYear, daysInYear, roundToPrecision } from "./utils.js";
 export const defaultOptions = {
     decimalPrecision: 1,
