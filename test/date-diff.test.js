@@ -33,6 +33,16 @@ describe("dateDiff(today, twoHoursLater, { decimalPrecision: 2 })", () => {
         assert.ok(daysString.length === 4 && daysString.indexOf(".") === 1);
     });
 });
+describe("dateDiff(today, twoHoursLater, { hoursSuffixPlural: \"heures\" })", () => {
+    const twoHoursLater = new Date(today.getTime() + (2 * 60 * 60 * 1000));
+    const diff = dateDiff(today, twoHoursLater, {
+        hoursSuffix: "heure",
+        hoursSuffixPlural: "heures"
+    });
+    it("will return \"2 heures\"", () => {
+        assert.strictEqual(diff.formatted, "2 heures");
+    });
+});
 describe("dateDiff(today, threeWeeksLater)", () => {
     const threeWeeksLater = new Date(today.getTime() + (3 * 7 * 24 * 60 * 60 * 1000));
     const diff = dateDiff(today, threeWeeksLater);

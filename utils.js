@@ -4,14 +4,14 @@ export const divisors = {
     minutes: 60 * 1000,
     seconds: 1000
 };
-export const endOfMonth = (date) => {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
-};
-export const endOfYear = (date) => {
+const endOfYear = (date) => {
     return new Date(date.getFullYear() + 1, 0, 0);
 };
-export const beginOfYear = (date) => {
+const beginOfYear = (date) => {
     return new Date(date.getFullYear(), 0, 0);
+};
+export const endOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
 };
 export const dayOfYear = (date) => {
     return (date.getTime() - beginOfYear(date).getTime()) / divisors.days;

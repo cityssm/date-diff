@@ -28,3 +28,13 @@ export declare type DateDiff = (fromDate: Date, toDate?: Date, options?: DateDif
     inYears: number;
     formatted: string;
 };
+export declare type Divisors = {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+};
+export declare type EndOfMonth = (date: Date) => Date;
+export declare type DayOfYear = (date: Date) => number;
+export declare type DaysInYear = (date: Date) => number;
+export declare type RoundToPrecision = (n: number, decimalPrecision: number) => number;

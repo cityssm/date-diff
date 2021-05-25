@@ -8,7 +8,7 @@ Forked from [melvinsembrano/date-diff](https://github.com/melvinsembrano/date-di
 
 ## Installation
 
-```sh
+```bash
 npm install @cityssm/date-diff
 ```
 

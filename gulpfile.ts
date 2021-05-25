@@ -1,4 +1,5 @@
 import gulp from "gulp";
+import aegean from "gulp-aegean";
 import babel from "gulp-babel";
 import minify from "gulp-minify";
 
@@ -9,6 +10,7 @@ import minify from "gulp-minify";
 const compileFn = () => {
 
   return gulp.src("date-diff.js", { allowEmpty: true })
+    .pipe(aegean())
     .pipe(babel({
       presets: ["@babel/env"]
     }))

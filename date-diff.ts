@@ -1,11 +1,15 @@
-import * as utils from "./utils.js";
-import type { DateDiff, DateDiffOptions } from "./types";
+import type * as types from "./types";
+
+// import for gulp-aegean -> babel -> es2015
+import "./utils.js";
+
+import { divisors, endOfMonth, dayOfYear, daysInYear, roundToPrecision } from "./utils.js";
 
 /*
  * Options
  */
 
-export const defaultOptions: DateDiffOptions = {
+export const defaultOptions: types.DateDiffOptions = {
   decimalPrecision: 1,
   yearsSuffix: "year",
   yearsSuffixPlural: "years",
@@ -29,9 +33,9 @@ export const defaultOptions: DateDiffOptions = {
  * dateDiff function
  */
 
-export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), dateDiffOptions: DateDiffOptions = {}) => {
+export const dateDiff: types.DateDiff = (fromDate: Date, toDate: Date = new Date(), dateDiffOptions: types.DateDiffOptions = {}) => {
 
-  const options: DateDiffOptions = Object.assign({}, defaultOptions, dateDiffOptions);
+  const options: types.DateDiffOptions = Object.assign({}, defaultOptions, dateDiffOptions);
 
   /*
    * Differences
@@ -39,30 +43,30 @@ export const dateDiff: DateDiff = (fromDate: Date, toDate: Date = new Date(), da
 
   const inMilliseconds = Math.floor(toDate.getTime() - fromDate.getTime());
 
-  const inSeconds = utils.roundToPrecision(inMilliseconds / utils.divisors.seconds, options.decimalPrecision);
+  const inSeconds = roundToPrecision(inMilliseconds / divisors.seconds, options.decimalPrecision);
 
-  const inMinutes = utils.roundToPrecision(inMilliseconds / utils.divisors.minutes, options.decimalPrecision);
+  const inMinutes = roundToPrecision(inMilliseconds / divisors.minutes, options.decimalPrecision);
 
-  const inHours = utils.roundToPrecision(inMilliseconds / utils.divisors.hours, options.decimalPrecision);
+  const inHours = roundToPrecision(inMilliseconds / divisors.hours, options.decimalPrecision);
 
-  const inDays = utils.roundToPrecision(inMilliseconds / utils.divisors.days, options.decimalPrecision);
+  const inDays = roundToPrecision(inMilliseconds / divisors.days, options.decimalPrecision);
 
-  const inWeeks = utils.roundToPrecision(inDays / 7, options.decimalPrecision);
+  const inWeeks = roundToPrecision(inDays / 7, options.decimalPrecision);
 
   const inMonths = (() => {
     let ret: number;
     ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
     ret += toDate.getMonth() - fromDate.getMonth();
-    const eom = utils.endOfMonth(fromDate).getDate();
+    const eom = endOfMonth(fromDate).getDate();
     ret += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
-    return utils.roundToPrecision(ret, options.decimalPrecision);
+    return roundToPrecision(ret, options.decimalPrecision);
   })();
 
   const inYears = (() => {
     let ret: number;
     ret = toDate.getFullYear() - fromDate.getFullYear();
-    ret += (utils.dayOfYear(toDate) - utils.dayOfYear(fromDate)) / utils.daysInYear(fromDate);
-    return utils.roundToPrecision(ret, options.decimalPrecision);
+    ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
+    return roundToPrecision(ret, options.decimalPrecision);
   })();
 
   /*
