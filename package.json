@@ -3,7 +3,7 @@
   "exports": "./date-diff.js",
   "types": "./date-diff.d.ts",
   "description": "Calculates the difference between two JavaScript Dates.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "type": "module",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
@@ -33,15 +33,12 @@
     "@types/gulp-minify": "^3.1.0",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.6.1",
-    "c8": "^7.7.2",
     "gulp": "^4.0.2",
     "gulp-aegean": "^0.2.0",
     "gulp-babel": "^8.0.0",
     "gulp-minify": "^3.1.0",
     "gulp-replace": "^1.1.3",
-    "gulp-string-replace": "^1.1.2",
-    "mocha": "^8.4.0",
-    "typescript": "^4.2.4"
+    "gulp-string-replace": "^1.1.2"
   },
   "scripts": {
     "test": "mocha",
