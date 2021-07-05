@@ -1,3 +1,5 @@
+/* eslint-disable node/no-unpublished-import */
+
 import gulp from "gulp";
 import replace from "gulp-string-replace";
 import aegean from "gulp-aegean";
@@ -8,7 +10,7 @@ import minify from "gulp-minify";
  * Minify public/javascripts
  */
 
-const compileFn = () => {
+const compileFunction = () => {
 
   return gulp.src("tmp/date-diff.js", { allowEmpty: true })
     .pipe(aegean())
@@ -21,14 +23,14 @@ const compileFn = () => {
 };
 
 
-const prepareTempFileFn = () => {
+const prepareTemporaryFileFunction = () => {
   return gulp.src("date-diff.js", { allowEmpty: true })
-    .pipe(replace(/import .* from \"\.\/utils\.js\"/g, "import './utils.js'"))
+    .pipe(replace(/import .* from "\.\/utils\.js"/g, "import './utils.js'"))
     .pipe(gulp.dest("./tmp"));
 };
 
 
-const copyUtilsToTempFn = () => {
+const copyUtilsToTemporaryFunction = () => {
   return gulp.src("utils.js", { allowEmpty: true })
     .pipe(gulp.dest("./tmp"));
 };
@@ -38,21 +40,21 @@ const copyUtilsToTempFn = () => {
  * Watch
  */
 
-const watchFn = () => {
-  gulp.watch("utils.js", copyUtilsToTempFn);
-  gulp.watch("date-diff.js", prepareTempFileFn);
-  gulp.watch("tmp/date-diff.js", compileFn);
+const watchFunction = () => {
+  gulp.watch("utils.js", copyUtilsToTemporaryFunction);
+  gulp.watch("date-diff.js", prepareTemporaryFileFunction);
+  gulp.watch("tmp/date-diff.js", compileFunction);
 };
 
-gulp.task("watch", watchFn);
+gulp.task("watch", watchFunction);
 
 /*
  * Initialize default
  */
 
 gulp.task("default", () => {
-  copyUtilsToTempFn();
-  prepareTempFileFn();
-  compileFn();
-  watchFn();
+  copyUtilsToTemporaryFunction();
+  prepareTemporaryFileFunction();
+  compileFunction();
+  watchFunction();
 });

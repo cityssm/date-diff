@@ -39,7 +39,7 @@ var daysInYear = function daysInYear(date) {
 exports.daysInYear = daysInYear;
 
 var roundToPrecision = function roundToPrecision(n, decimalPrecision) {
-  return parseFloat(n.toFixed(decimalPrecision));
+  return Number.parseFloat(n.toFixed(decimalPrecision));
 };
 
 exports.roundToPrecision = roundToPrecision;
@@ -76,19 +76,19 @@ var dateDiff = function dateDiff(fromDate) {
   var inWeeks = roundToPrecision(inDays / 7, options.decimalPrecision);
 
   var inMonths = function () {
-    var ret;
-    ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
-    ret += toDate.getMonth() - fromDate.getMonth();
+    var returnValue;
+    returnValue = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
+    returnValue += toDate.getMonth() - fromDate.getMonth();
     var eom = endOfMonth(fromDate).getDate();
-    ret += toDate.getDate() / eom - fromDate.getDate() / eom;
-    return roundToPrecision(ret, options.decimalPrecision);
+    returnValue += toDate.getDate() / eom - fromDate.getDate() / eom;
+    return roundToPrecision(returnValue, options.decimalPrecision);
   }();
 
   var inYears = function () {
-    var ret;
-    ret = toDate.getFullYear() - fromDate.getFullYear();
-    ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
-    return roundToPrecision(ret, options.decimalPrecision);
+    var returnValue;
+    returnValue = toDate.getFullYear() - fromDate.getFullYear();
+    returnValue += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
+    return roundToPrecision(returnValue, options.decimalPrecision);
   }();
 
   var formatted = "";

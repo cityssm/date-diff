@@ -27,18 +27,18 @@ export const dateDiff = (fromDate, toDate = new Date(), dateDiffOptions = {}) =>
     const inDays = roundToPrecision(inMilliseconds / divisors.days, options.decimalPrecision);
     const inWeeks = roundToPrecision(inDays / 7, options.decimalPrecision);
     const inMonths = (() => {
-        let ret;
-        ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
-        ret += toDate.getMonth() - fromDate.getMonth();
+        let returnValue;
+        returnValue = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
+        returnValue += toDate.getMonth() - fromDate.getMonth();
         const eom = endOfMonth(fromDate).getDate();
-        ret += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
-        return roundToPrecision(ret, options.decimalPrecision);
+        returnValue += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
+        return roundToPrecision(returnValue, options.decimalPrecision);
     })();
     const inYears = (() => {
-        let ret;
-        ret = toDate.getFullYear() - fromDate.getFullYear();
-        ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
-        return roundToPrecision(ret, options.decimalPrecision);
+        let returnValue;
+        returnValue = toDate.getFullYear() - fromDate.getFullYear();
+        returnValue += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
+        return roundToPrecision(returnValue, options.decimalPrecision);
     })();
     let formatted = "";
     if (Math.abs(inYears) >= 1) {

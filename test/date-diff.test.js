@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import dateDiff from "../date-diff.js";
+import { dateDiff } from "../date-diff.js";
 const today = new Date(2020, (1 - 1), 1);
 describe("dateDiff(today, tomorrow)", () => {
     const tomorrow = new Date(2020, (1 - 1), 2);

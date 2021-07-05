@@ -20,5 +20,5 @@ export const daysInYear = (date) => {
     return (endOfYear(date).getTime() - beginOfYear(date).getTime()) / divisors.days;
 };
 export const roundToPrecision = (n, decimalPrecision) => {
-    return parseFloat(n.toFixed(decimalPrecision));
+    return Number.parseFloat(n.toFixed(decimalPrecision));
 };

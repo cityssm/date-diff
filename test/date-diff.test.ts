@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import dateDiff from "../date-diff.js";
+import { dateDiff } from "../date-diff.js";
 
 
 // January 1st, 2020
@@ -26,7 +26,7 @@ describe("dateDiff(today, tomorrow)", () => {
   });
 
   it("will return 86400 seconds", () => {
-    assert.strictEqual(diff.inSeconds, 86400);
+    assert.strictEqual(diff.inSeconds, 86_400);
   });
 
   it("will return \"1 day\"", () => {

@@ -28,5 +28,5 @@ export const daysInYear: types.DaysInYear = (date: Date) => {
 };
 
 export const roundToPrecision: types.RoundToPrecision = (n: number, decimalPrecision: number) => {
-  return parseFloat(n.toFixed(decimalPrecision));
+  return Number.parseFloat(n.toFixed(decimalPrecision));
 };

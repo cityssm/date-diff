@@ -51,19 +51,19 @@ export const dateDiff: types.DateDiff = (fromDate: Date, toDate: Date = new Date
   const inWeeks = roundToPrecision(inDays / 7, options.decimalPrecision);
 
   const inMonths = (() => {
-    let ret: number;
-    ret = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
-    ret += toDate.getMonth() - fromDate.getMonth();
+    let returnValue: number;
+    returnValue = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
+    returnValue += toDate.getMonth() - fromDate.getMonth();
     const eom = endOfMonth(fromDate).getDate();
-    ret += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
-    return roundToPrecision(ret, options.decimalPrecision);
+    returnValue += (toDate.getDate() / eom) - (fromDate.getDate() / eom);
+    return roundToPrecision(returnValue, options.decimalPrecision);
   })();
 
   const inYears = (() => {
-    let ret: number;
-    ret = toDate.getFullYear() - fromDate.getFullYear();
-    ret += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
-    return roundToPrecision(ret, options.decimalPrecision);
+    let returnValue: number;
+    returnValue = toDate.getFullYear() - fromDate.getFullYear();
+    returnValue += (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate);
+    return roundToPrecision(returnValue, options.decimalPrecision);
   })();
 
   /*
