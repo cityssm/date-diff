@@ -12,5 +12,6 @@ tmp
 .eslintrc.json
 .gitignore
 .npmignore
+.npmpackagejsonlintrc.json
 appveyor.yml
 tsconfig.json
