@@ -21,7 +21,7 @@
   "typings": "./date-diff.d.ts",
   "typesVersions": {
     "*": {
-      "date-diff.d.ts": ["./data-diff.d.ts"]
+      "date-diff.d.ts": ["./date-diff.d.ts"]
     }
   },
   "exports": {
