@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/date-diff",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Calculates the difference between two JavaScript Dates.",
   "keywords": [
     "DateDiff",
@@ -16,19 +16,9 @@
   "contributors": [
     "Melvin Sembrano"
   ],
-  "main": "./date-diff.js",
   "types": "./date-diff.d.ts",
   "typings": "./date-diff.d.ts",
-  "typesVersions": {
-    "*": {
-      "date-diff.d.ts": ["./date-diff.d.ts"]
-    }
-  },
-  "exports": {
-    "*": {
-      ".": "./date-diff.js"
-    }
-  },
+  "exports":"./date-diff.js",
   "type": "module",
   "repository": {
     "type": "git",
