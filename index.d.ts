@@ -1,5 +1,5 @@
-import type * as types from './types.js';
-export declare const defaultOptions: types.DateDiffOptions;
+import type { DateDiffOptions, DateDiffReturn } from './types.js';
+export declare const defaultOptions: DateDiffOptions;
 /**
  * Calculates the difference between two dates.
  * @param fromDate - The starting date.
@@ -7,4 +7,4 @@ export declare const defaultOptions: types.DateDiffOptions;
  * @param dateDiffOptions - Options for formatting the date difference.
  * @returns An object containing the difference in a variety of units and as a formatted string.
  */
-export default function dateDiff(fromDate: Date, toDate?: Date, dateDiffOptions?: Partial<types.DateDiffOptions>): types.DateDiffReturn;
+export default function dateDiff(fromDate: Date, toDate?: Date, dateDiffOptions?: Partial<DateDiffOptions>): DateDiffReturn;

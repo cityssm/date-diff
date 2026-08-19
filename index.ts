@@ -5,7 +5,7 @@ import {
   millisecondsInOneSecond
 } from '@cityssm/to-millis'
 
-import type * as types from './types.js'
+import type { DateDiffOptions, DateDiffReturn } from './types.js'
 import {
   dayOfYear,
   daysInYear,
@@ -17,7 +17,7 @@ import {
  * Options
  */
 
-export const defaultOptions: types.DateDiffOptions = {
+export const defaultOptions: DateDiffOptions = {
   decimalPrecision: 1,
 
   yearsSuffix: 'year',
@@ -55,9 +55,9 @@ export const defaultOptions: types.DateDiffOptions = {
 export default function dateDiff(
   fromDate: Date,
   toDate: Date = new Date(),
-  dateDiffOptions: Partial<types.DateDiffOptions> = {}
-): types.DateDiffReturn {
-  const options: types.DateDiffOptions = {
+  dateDiffOptions: Partial<DateDiffOptions> = {}
+): DateDiffReturn {
+  const options: DateDiffOptions = {
     ...defaultOptions,
     ...dateDiffOptions
   }
