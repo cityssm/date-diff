@@ -1,19 +1,27 @@
 export interface DateDiffOptions {
   decimalPrecision: number
+
   yearsSuffix: string
   yearsSuffixPlural: string
+
   monthsSuffix: string
   monthsSuffixPlural: string
+
   weeksSuffix: string
   weeksSuffixPlural: string
+
   daysSuffix: string
   daysSuffixPlural: string
+
   hoursSuffix: string
   hoursSuffixPlural: string
+
   minutesSuffix: string
   minutesSuffixPlural: string
+
   secondsSuffix: string
   secondsSuffixPlural: string
+
   millisecondsSuffix: string
   millisecondsSuffixPlural: string
 }

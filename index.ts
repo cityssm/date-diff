@@ -19,20 +19,28 @@ import {
 
 export const defaultOptions: types.DateDiffOptions = {
   decimalPrecision: 1,
+
   yearsSuffix: 'year',
   yearsSuffixPlural: 'years',
+
   monthsSuffix: 'month',
   monthsSuffixPlural: 'months',
+
   weeksSuffix: 'week',
   weeksSuffixPlural: 'weeks',
+
   daysSuffix: 'day',
   daysSuffixPlural: 'days',
+
   hoursSuffix: 'hour',
   hoursSuffixPlural: 'hours',
+
   minutesSuffix: 'minute',
   minutesSuffixPlural: 'minutes',
+
   secondsSuffix: 'second',
   secondsSuffixPlural: 'seconds',
+
   millisecondsSuffix: 'millisecond',
   millisecondsSuffixPlural: 'milliseconds'
 }
@@ -84,18 +92,23 @@ export default function dateDiff(
 
   const inMonths = (() => {
     let returnValue: number
+
     returnValue = (toDate.getFullYear() - fromDate.getFullYear()) * 12
     returnValue += toDate.getMonth() - fromDate.getMonth()
+
     const eom = endOfMonth(fromDate).getDate()
     returnValue += toDate.getDate() / eom - fromDate.getDate() / eom
+
     return roundToPrecision(returnValue, options.decimalPrecision)
   })()
 
   const inYears = (() => {
     let returnValue: number
+
     returnValue = toDate.getFullYear() - fromDate.getFullYear()
     returnValue +=
       (dayOfYear(toDate) - dayOfYear(fromDate)) / daysInYear(fromDate)
+
     return roundToPrecision(returnValue, options.decimalPrecision)
   })()
 
