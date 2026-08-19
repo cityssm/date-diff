@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/date-diff",
-  "version": "2.2.3",
+  "version": "3.0.0",
   "description": "Calculates the difference between two JavaScript Dates.",
   "keywords": [
     "DateDiff",
