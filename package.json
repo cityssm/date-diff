@@ -11,20 +11,34 @@
     "subtract dates"
   ],
   "homepage": "https://github.com/cityssm/date-diff",
-  "license": "MIT",
-  "author": "The Corporation of the City of Sault Ste. Marie",
-  "contributors": [
-    "Melvin Sembrano"
-  ],
-  "exports": "./date-diff.js",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cityssm/date-diff.git"
   },
+  "license": "MIT",
+  "author": "The Corporation of the City of Sault Ste. Marie",
+  "contributors": [
+    {
+      "name": "Melvin Sembrano",
+      "url": "https://github.com/melvinsembrano/date-diff"
+    }
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.*",
+    "types.*",
+    "utilities.*"
+  ],
   "scripts": {
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test",
     "test": "node --test"
+  },
+  "dependencies": {
+    "@cityssm/to-millis": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "^26.2.0",

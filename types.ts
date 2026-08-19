@@ -19,18 +19,19 @@ export interface DateDiffOptions {
 }
 
 export interface DateDiffReturn {
-  inMilliseconds: number
-  inSeconds: number
-  inMinutes: number
-  inHours: number
   inDays: number
-  inWeeks: number
+  inHours: number
+  inMilliseconds: number
+  inMinutes: number
   inMonths: number
+  inSeconds: number
+  inWeeks: number
   inYears: number
+
   formatted: string
 }
 
-export type Divisors = {
+export interface Divisors {
   days: number
   hours: number
   minutes: number
