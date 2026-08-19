@@ -1,4 +1,3 @@
-import type * as types from "./types";
+import type * as types from './types.js';
 export declare const defaultOptions: types.DateDiffOptions;
-export declare const dateDiff: types.DateDiff;
-export default dateDiff;
+export default function dateDiff(fromDate: Date, toDate?: Date, dateDiffOptions?: Partial<types.DateDiffOptions>): types.DateDiffReturn;

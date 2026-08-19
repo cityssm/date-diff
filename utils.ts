@@ -1,4 +1,4 @@
-import type * as types from "./types";
+import type * as types from "./types.js";
 
 export const divisors: types.Divisors = {
   days: 24 * 60 * 60 * 1000,

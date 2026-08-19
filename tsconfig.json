@@ -1,31 +1,31 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "ES2020",
-    "moduleResolution": "Node",
-    "isolatedModules": false,
+    "target": "es2024",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
+
+    "isolatedModules": true,
+
     "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": true,
+    "removeComments": false,
+
     "allowUnreachableCode": false,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
+
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "ignoreDeprecations": "6.0",
+
+    "types": ["node"]
   },
   "compileOnSave": true,
   "buildOnSave": true,
-  "atom": {
-    "rewriteTsconfig": false,
-    "formatOnSave": true
-  },
-  "formatCodeOptions": {
-    "indentSize": 2,
-    "tabSize": 2,
-    "insertSpaceAfterCommaDelimiter": true,
-    "insertSpaceAfterSemicolonInForStatements": true,
-    "insertSpaceBeforeAndAfterBinaryOperators": true,
-    "insertSpaceAfterKeywordsInControlFlowStatements": true,
-    "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-    "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
-    "placeOpenBraceOnNewLineForFunctions": false,
-    "placeOpenBraceOnNewLineForControlBlocks": false
-  }
+  "exclude": ["node_modules"]
 }

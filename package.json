@@ -5,7 +5,7 @@
   "keywords": [
     "DateDiff",
     "Date diff",
-    "date arthmetic",
+    "date arithmetic",
     "Javascript Date",
     "date-diff",
     "subtract dates"
@@ -17,39 +17,21 @@
     "Melvin Sembrano"
   ],
   "exports": "./date-diff.js",
-  "types": "./date-diff.d.ts",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cityssm/date-diff.git"
   },
   "scripts": {
-    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary mocha",
-    "lint:packageJSON": "npmPkgJsonLint .",
-    "test": "mocha"
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test",
+    "test": "node --test"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
-    "@types/gulp": "^4.0.9",
-    "@types/gulp-babel": "^6.1.30",
-    "@types/gulp-minify": "^3.1.1",
-    "@types/mocha": "^9.0.0",
-    "@types/node": "^16.9.1",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-unicorn": "^36.0.0",
-    "gulp": "^4.0.2",
-    "gulp-aegean": "^0.2.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-minify": "^3.1.0",
-    "gulp-replace": "^1.1.3",
-    "gulp-string-replace": "^1.1.2"
+    "@types/node": "^26.2.0",
+    "eslint-config-cityssm": "^46.0.0",
+    "prettier-config-cityssm": "^2.1.3"
   },
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": ">=18.0.0"
   }
 }

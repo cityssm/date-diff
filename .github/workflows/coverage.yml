@@ -1,0 +1,40 @@
+name: Coverage Testing
+
+on: [workflow_dispatch, push, pull_request]
+
+permissions: read-all
+
+jobs:
+  Coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [ 22, 24, 26 ]
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+    name: Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install Package
+        run: |
+          npm ci
+          npm install -g c8
+
+      - name: Run Coverage Testing
+        run: npm run coverage
+
+      - name: Codecov
+        if: ${{ github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 24 }}
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${CODECOV_TOKEN}

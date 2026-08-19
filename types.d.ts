@@ -1,23 +1,23 @@
-export declare type DateDiffOptions = {
-    decimalPrecision?: number;
-    yearsSuffix?: string;
-    yearsSuffixPlural?: string;
-    monthsSuffix?: string;
-    monthsSuffixPlural?: string;
-    weeksSuffix?: string;
-    weeksSuffixPlural?: string;
-    daysSuffix?: string;
-    daysSuffixPlural?: string;
-    hoursSuffix?: string;
-    hoursSuffixPlural?: string;
-    minutesSuffix?: string;
-    minutesSuffixPlural?: string;
-    secondsSuffix?: string;
-    secondsSuffixPlural?: string;
-    millisecondsSuffix?: string;
-    millisecondsSuffixPlural?: string;
-};
-export declare type DateDiff = (fromDate: Date, toDate?: Date, options?: DateDiffOptions) => {
+export interface DateDiffOptions {
+    decimalPrecision: number;
+    yearsSuffix: string;
+    yearsSuffixPlural: string;
+    monthsSuffix: string;
+    monthsSuffixPlural: string;
+    weeksSuffix: string;
+    weeksSuffixPlural: string;
+    daysSuffix: string;
+    daysSuffixPlural: string;
+    hoursSuffix: string;
+    hoursSuffixPlural: string;
+    minutesSuffix: string;
+    minutesSuffixPlural: string;
+    secondsSuffix: string;
+    secondsSuffixPlural: string;
+    millisecondsSuffix: string;
+    millisecondsSuffixPlural: string;
+}
+export interface DateDiffReturn {
     inMilliseconds: number;
     inSeconds: number;
     inMinutes: number;
@@ -27,14 +27,14 @@ export declare type DateDiff = (fromDate: Date, toDate?: Date, options?: DateDif
     inMonths: number;
     inYears: number;
     formatted: string;
-};
-export declare type Divisors = {
+}
+export type Divisors = {
     days: number;
     hours: number;
     minutes: number;
     seconds: number;
 };
-export declare type EndOfMonth = (date: Date) => Date;
-export declare type DayOfYear = (date: Date) => number;
-export declare type DaysInYear = (date: Date) => number;
-export declare type RoundToPrecision = (n: number, decimalPrecision: number) => number;
+export type EndOfMonth = (date: Date) => Date;
+export type DayOfYear = (date: Date) => number;
+export type DaysInYear = (date: Date) => number;
+export type RoundToPrecision = (n: number, decimalPrecision: number) => number;
