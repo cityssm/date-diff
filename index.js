@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { millisecondsInOneDay, millisecondsInOneHour, millisecondsInOneMinute, millisecondsInOneSecond } from '@cityssm/to-millis';
 import { dayOfYear, daysInYear, endOfMonth, roundToPrecision } from './utilities.js';
 /*
@@ -44,6 +45,7 @@ export default function dateDiff(fromDate, toDate = new Date(), dateDiffOptions 
     const inDays = roundToPrecision(inMilliseconds / millisecondsInOneDay, options.decimalPrecision);
     const inWeeks = roundToPrecision(inDays / 7, options.decimalPrecision);
     const inMonths = (() => {
+        // eslint-disable-next-line @typescript-eslint/init-declarations
         let returnValue;
         returnValue = (toDate.getFullYear() - fromDate.getFullYear()) * 12;
         returnValue += toDate.getMonth() - fromDate.getMonth();
@@ -52,6 +54,7 @@ export default function dateDiff(fromDate, toDate = new Date(), dateDiffOptions 
         return roundToPrecision(returnValue, options.decimalPrecision);
     })();
     const inYears = (() => {
+        // eslint-disable-next-line @typescript-eslint/init-declarations
         let returnValue;
         returnValue = toDate.getFullYear() - fromDate.getFullYear();
         returnValue +=
@@ -61,6 +64,7 @@ export default function dateDiff(fromDate, toDate = new Date(), dateDiffOptions 
     /*
      * Formatted
      */
+    // eslint-disable-next-line @typescript-eslint/init-declarations
     let formatted;
     if (Math.abs(inYears) >= 1) {
         formatted = `${inYears.toString()} ${inYears === 1 ? options.yearsSuffix : options.yearsSuffixPlural}`;

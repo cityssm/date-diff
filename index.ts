@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 import {
   millisecondsInOneDay,
   millisecondsInOneHour,
@@ -91,6 +93,7 @@ export default function dateDiff(
   const inWeeks = roundToPrecision(inDays / 7, options.decimalPrecision)
 
   const inMonths = (() => {
+    // eslint-disable-next-line @typescript-eslint/init-declarations
     let returnValue: number
 
     returnValue = (toDate.getFullYear() - fromDate.getFullYear()) * 12
@@ -103,6 +106,7 @@ export default function dateDiff(
   })()
 
   const inYears = (() => {
+    // eslint-disable-next-line @typescript-eslint/init-declarations
     let returnValue: number
 
     returnValue = toDate.getFullYear() - fromDate.getFullYear()
@@ -116,6 +120,7 @@ export default function dateDiff(
    * Formatted
    */
 
+  // eslint-disable-next-line @typescript-eslint/init-declarations
   let formatted: string
 
   if (Math.abs(inYears) >= 1) {
